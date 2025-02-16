@@ -8,39 +8,34 @@ const MainCategories = () => {
       <div className="flex-1 flex items-center justify-between flex-wrap">
         <Link
           to="/posts"
-          className="bg-blue-800 text-white rounded-full px-4 py-2"
+          className="bg-[#6b2828] text-white rounded-full px-4 py-2"
         >
           All Posts
         </Link>
         <Link
-          to="/posts?cat=web-design"
+          to="/posts?cat=agri-technology"
           className="hover:bg-blue-50 rounded-full px-4 py-2"
         >
-          Web Design
+          Agri Technology
         </Link>
         <Link
-          to="/posts?cat=development"
+          to="/posts?cat=plant-diseases"
           className="hover:bg-blue-50 rounded-full px-4 py-2"
         >
-          Development
+          Plant Diseases
+        </Link>
+
+        <Link
+          to="/posts?cat=market-trends"
+          className="hover:bg-blue-50 rounded-full px-4 py-2"
+        >
+          Market Trends
         </Link>
         <Link
-          to="/posts?cat=databases"
+          to="/posts?cat=success-stories"
           className="hover:bg-blue-50 rounded-full px-4 py-2"
         >
-          Databases
-        </Link>
-        <Link
-          to="/posts?cat=seo"
-          className="hover:bg-blue-50 rounded-full px-4 py-2"
-        >
-          Search Engines
-        </Link>
-        <Link
-          to="/posts?cat=marketing"
-          className="hover:bg-blue-50 rounded-full px-4 py-2"
-        >
-          Marketing
+          Success Stories
         </Link>
       </div>
       <span className="text-xl font-medium">|</span>

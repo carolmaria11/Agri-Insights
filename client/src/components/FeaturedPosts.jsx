@@ -40,15 +40,17 @@ const FeaturedPosts = () => {
         {/* details */}
         <div className="flex items-center gap-4">
           <h1 className="font-semibold lg:text-lg">01.</h1>
-          <Link className="text-blue-800 lg:text-lg">{posts[0].category}</Link>
+          <Link className="text-[#6b2828] font-semibold lg:text-lg">
+            {posts[0].category}
+          </Link>
           <span className="text-gray-500">{format(posts[0].createdAt)}</span>
         </div>
         {/* title */}
         <Link
-          to={posts[0].slug}
-          className="text-xl lg:text-3xl font-semibold lg:font-bold"
+          to={`/${posts[0]?.slug}`}
+          className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
         >
-          {posts[0].title}
+          {posts[0]?.title || "Untitled Post"}
         </Link>
       </div>
       {/* Others */}
@@ -70,17 +72,19 @@ const FeaturedPosts = () => {
               {/* details */}
               <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
                 <h1 className="font-semibold">02.</h1>
-                <Link className="text-blue-800">{posts[1].category}</Link>
+                <Link className="text-[#6b2828] font-semibold">
+                  {posts[1].category}
+                </Link>
                 <span className="text-gray-500 text-sm">
                   {format(posts[1].createdAt)}
                 </span>
               </div>
               {/* title */}
               <Link
-                to={posts[1].slug}
+                to={`/${posts[1]?.slug}`}
                 className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
               >
-                {posts[1].title}
+                {posts[1]?.title || "Untitled Post"}
               </Link>
             </div>
           </div>
@@ -101,18 +105,20 @@ const FeaturedPosts = () => {
             <div className="w-2/3">
               {/* details */}
               <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
-                <h1 className="font-semibold">02.</h1>
-                <Link className="text-blue-800">{posts[2].category}</Link>
+                <h1 className="font-semibold">03.</h1>
+                <Link className="text-[#6b2828] font-semibold">
+                  {posts[2].category}
+                </Link>
                 <span className="text-gray-500 text-sm">
                   {format(posts[2].createdAt)}
                 </span>
               </div>
               {/* title */}
               <Link
-                to={posts[1].slug}
+                to={`/${posts[2]?.slug}`}
                 className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
               >
-                {posts[2].title}
+                {posts[2]?.title || "Untitled Post"}
               </Link>
             </div>
           </div>
@@ -133,18 +139,21 @@ const FeaturedPosts = () => {
             <div className="w-2/3">
               {/* details */}
               <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
-                <h1 className="font-semibold">02.</h1>
-                <Link className="text-blue-800">{posts[3].category}</Link>
+                <h1 className="font-semibold">04.</h1>
+                <Link className="text-[#6b2828] font-semibold">
+                  {posts[3].category}
+                </Link>
                 <span className="text-gray-500 text-sm">
                   {format(posts[3].createdAt)}
                 </span>
               </div>
               {/* title */}
+
               <Link
-                to={posts[3].slug}
+                to={`/${posts[3]?.slug}`}
                 className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
               >
-                {posts[3].title}
+                {posts[3]?.title || "Untitled Post"}
               </Link>
             </div>
           </div>

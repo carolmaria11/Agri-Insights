@@ -19,18 +19,23 @@ const Write = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
+    if (img) {
+      const imageUrl = img.url;
+      const imageHtml = `<p><img src="${imageUrl}" class="custom-image" /></p>`;
+      setValue((prev) => prev + imageHtml);
+    }
   }, [img]);
 
+  // Add video to the content area with custom styles
   useEffect(() => {
-    video &&
-      setValue(
-        (prev) => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
-      );
+    if (video) {
+      const videoUrl = video.url;
+      const videoHtml = `<p><iframe class="ql-video custom-video" src="${videoUrl}"></iframe></p>`;
+      setValue((prev) => prev + videoHtml);
+    }
   }, [video]);
 
   const navigate = useNavigate();
-
   const { getToken } = useAuth();
 
   const mutation = useMutation({
@@ -43,7 +48,7 @@ const Write = () => {
       });
     },
     onSuccess: (res) => {
-      toast.success("Post has been created!");
+      toast.success("Post has been created");
       navigate(`/${res.data.slug}`);
     },
   });
@@ -58,6 +63,12 @@ const Write = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!value.trim()) {
+      toast.error("Content cannot be empty!");
+      return;
+    }
+
     const formData = new FormData(e.target);
 
     const data = {
@@ -67,6 +78,7 @@ const Write = () => {
       desc: formData.get("desc"),
       content: value,
     };
+
     console.log(data);
     mutation.mutate(data);
   };
@@ -84,7 +96,7 @@ const Write = () => {
         <input
           className="text-4xl font-semibold bg-transparent outline-none"
           type="text"
-          placeholder="My Awesome Story"
+          placeholder="Share Your Farming Experience"
           name="title"
         />
         <div className="flex items-center gap-4">
@@ -97,11 +109,14 @@ const Write = () => {
             className="p-2 rounded-xl bg-white shadow-md"
           >
             <option value="general">General</option>
-            <option value="web-design">Web Design</option>
-            <option value="development">Development</option>
-            <option value="databases">Databases</option>
-            <option value="seo">Search Engines</option>
-            <option value="marketing">Marketing</option>
+            <option value="crop-management">Crop Management</option>
+            <option value="soil-health">Soil Health</option>
+            <option value="plant-diseases">Plant Diseases</option>
+            <option value="sustainable-farming">Sustainable Farming</option>
+            <option value="agri-technology">Agri-Technology</option>
+            <option value="market-trends">Market Trends</option>
+            <option value="success-stories">Success Stories</option>
+            <option value="community-experiences">Community Experiences</option>
           </select>
         </div>
         <textarea
@@ -109,32 +124,24 @@ const Write = () => {
           name="desc"
           placeholder="A Short Description"
         />
-        <div className="flex flex-1">
-          <div className="flex flex-col gap-2 mr-2">
-            <Upload type="image" setProgress={setProgress} setData={setImg}>
-              🌆
-            </Upload>
-            <Upload type="video" setProgress={setProgress} setData={setVideo}>
-              ▶️
-            </Upload>
-          </div>
+        <div className=" flex-1 flex flex-col">
+          <div className="flex flex-col gap-2 mr-2"></div>
           <ReactQuill
             theme="snow"
-            className="flex-1 rounded-xl bg-white shadow-md"
+            className="flex-1 rounded-xl bg-white shadow-md h-[400px] overflow-auto" // Adjusted to prevent overflow
             value={value}
             onChange={setValue}
             readOnly={0 < progress && progress < 100}
           />
         </div>
-
         <button
           disabled={mutation.isPending || (0 < progress && progress < 100)}
           className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36 disabled:bg-blue-400 disabled:cursor-not-allowed"
         >
           {mutation.isPending ? "Loading..." : "Send"}
         </button>
-        {"Progress: " + progress}
-        {mutation.isError && <span>{mutation.error.message}</span>}
+        {"Progress:" + progress}
+        {/* {mutation.isError && <span>{mutation.error.message}</span>} */}
       </form>
     </div>
   );
