@@ -7,8 +7,13 @@ import {
 
 const router = express.Router();
 
-router.get("/:postId", getPostComments);
-router.post("/:postId", addComment);
-router.delete("/:id", deleteComment);
+// Fetch comments for a specific post
+router.get("/:postId/comments", getPostComments);
+
+// Add a comment to a specific post
+router.post("/:postId/comments", addComment);
+
+// Delete a specific comment
+router.delete("/:commentId", deleteComment);
 
 export default router;
