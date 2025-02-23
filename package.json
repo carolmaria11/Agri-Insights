@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.21.2",
-    "path-to-regexp": "^8.2.0"
-  }
-}
