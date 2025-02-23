@@ -11,14 +11,14 @@ import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-// Load environment variables securely
+// Load environment variables
 dotenv.config();
+
+const app = express();
 
 // Fix __dirname for compatibility across different OS
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const app = express();
 
 // Allow CORS for frontend
 const allowedOrigins = process.env.ALLOWED_ORIGINS
@@ -64,7 +64,6 @@ if (process.env.NODE_ENV === "production") {
 
 // Global Error Handler (hide stack in production)
 app.use((error, req, res, next) => {
-  console.error("❌ Error:", error.message);
   res.status(error.status || 500).json({
     message: error.message || "Something went wrong!",
     status: error.status,

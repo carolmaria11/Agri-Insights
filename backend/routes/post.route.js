@@ -14,9 +14,9 @@ const router = express.Router();
 router.get("/upload-auth", uploadAuth);
 
 router.get("/", getPosts);
-router.get("/post/:slug", increaseVisit, getPost); // More specific
+router.get("/:slug", increaseVisit, getPost);
 router.post("/", createPost);
-router.delete("/post/:id", deletePost); // Avoids conflict with `:slug`
-router.patch("/post/feature", featurePost); // More explicit
+router.delete("/:id", deletePost);
+router.patch("/feature", featurePost);
 
 export default router;
