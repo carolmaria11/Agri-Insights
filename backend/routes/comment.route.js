@@ -14,6 +14,6 @@ router.get("/:postId/comments", getPostComments);
 router.post("/:postId/comments", addComment);
 
 // Delete a specific comment
-router.delete("/:postId/comments/:commentId", deleteComment);
+router.delete("/comments/:commentId", deleteComment);
 
 export default router;
